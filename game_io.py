@@ -6,7 +6,7 @@ def save_game_state(filename, current_player, board):
             "current_player": current_player,
             "board": board
         }
-        with open(filename, 'w') as f:  # Append '.json' here
+        with open(filename, 'w') as f:
             json.dump(data, f)
         print("Game state saved successfully.")
     except Exception as e:

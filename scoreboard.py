@@ -9,7 +9,7 @@ class Scoreboard(tk.Frame):
         self.o_score = 0
         self.x_label = tk.Label(self, text="X: 0", font=('Corbel', 14))
         self.o_label = tk.Label(self, text="O: 0", font=('Corbel', 14))
-        self.reset_button = ResetButton(self.master, self)  # Pass self as the parent widget and also the scoreboard
+        self.reset_button = ResetButton(self, self)  # Pass self as the parent widget and also the scoreboard
         
         self.x_label.grid(row=0, column=0, padx=5, pady=5)
         self.o_label.grid(row=0, column=1, padx=5, pady=5)
@@ -24,15 +24,20 @@ class Scoreboard(tk.Frame):
         if x_score is not None:
             self.x_score = x_score
             self.o_score = o_score
-            self.update_score_labels()
+        self.update_score_labels()
 
     def update_score(self, winner):
         if winner == 'X':
             self.x_score += 1
+            self.update_score_labels()
+            self.save_scores()
+            return self.x_score
         elif winner == 'O':
             self.o_score += 1
-        self.update_score_labels()
-        self.save_scores()
+            self.update_score_labels()
+            self.save_scores()
+            return self.o_score
+
 
     def update_score_labels(self):
         self.x_label.config(text=f"X: {self.x_score}")
