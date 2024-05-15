@@ -9,7 +9,7 @@ class ResetButton(tk.Button):
     def reset_scores(self):
         self.scoreboard.x_score = 0
         self.scoreboard.o_score = 0
-        self.scoreboard.update_score_labels()  # Call the update_score_labels method
-        self.scoreboard.save_scores()  # Save scores after resetting
+        self.scoreboard.update_score_labels()
+        self.scoreboard.save_scores()
         if self.game_instance is not None:
-            self.game_instance.reset_board()  # Call the reset_board method of the game_instance
+            self.game_instance.reset_board() 

@@ -24,7 +24,22 @@ In my code, polymorphism is used indirectly due to the use of inheritance from t
 
 Encapsulation is observed in the classes where data (attributes) and functionality (methods) are bundled together. For instance, the 'Scoreboard' class encapsulates score-related data and methods.
 
-![alt text](image.png)
+```import tkinter as tk
+
+class ResetButton(tk.Button):
+    def __init__(self, master, scoreboard, game_instance=None):
+        super().__init__(master, text="Reset", font=('Corbel', 14), command=self.reset_scores)
+        self.scoreboard = scoreboard
+        self.game_instance = game_instance
+
+    def reset_scores(self):
+        self.scoreboard.x_score = 0
+        self.scoreboard.o_score = 0
+        self.scoreboard.update_score_labels()
+        self.scoreboard.save_scores()
+        if self.game_instance is not None:
+            self.game_instance.reset_board() 
+```
 
 ### Inheritance:
 
@@ -33,6 +48,16 @@ Inheritance is used where certain classes inherit properties and methods from pa
 ### Encapsulation:
 
 Encapsulation helps in hiding the internal state and implementation details of the Scoreboard class, providing a controlled interface for interacting with it. This approach protects the internal state from unintended or harmful modifications from outside the class.
+
+### Design Patterns:
+
+### Singleton:
+
+Although not explicitly implemented, the TicTacToe class acts in a way similar to a singleton in that there is only one instance of the game being managed at a time. This ensures a single source of truth for the game state.
+
+### Command pattern:
+
+The command pattern is exemplified in the ResetButton class, where the button is configured with a command (self.reset_scores). This pattern decouples the sender (button press) from the action that needs to be performed (resetting the scores and board).
 
 ## 3. Results and summary
 
